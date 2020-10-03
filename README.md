@@ -8,7 +8,11 @@ This model is then compared to an Azure AutoML run.
 ## Summary
 **In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
 
+This dataset contains data about bank telemarketing. The dataset has 21 columns and about 32000 rows. We're trying to predict the column named 'y' which has two class possibilities (yes, no). There is heavy class imbalance in the dataset. There are less than 3200 'yes' records which accounts to around 10% of the total rows.
+
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+
+The best performing model was a VotingEnsemble model built by AutoML. This has an accuracy of 91.72%. The model used the engineered features. The numerical features were imputed using the mean and the categorical were label encoded and vectorized.
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
