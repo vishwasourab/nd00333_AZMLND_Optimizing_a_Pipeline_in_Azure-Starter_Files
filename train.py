@@ -39,7 +39,6 @@ def clean_data(data):
     
     return x_df, y_df
 
-
 # TODO: Create TabularDataset using TabularDatasetFactory
 # Data is located at:
 web_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
@@ -48,7 +47,10 @@ web_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample
 #ds = ### YOUR CODE HERE ###
 ds = Dataset.Tabular.from_delimited_files(path=web_path)
 
+
 x, y = clean_data(ds)
+
+
 
 # TODO: Split data into train and test sets.
 
@@ -57,6 +59,7 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2)
 # ## YOUR CODE HERE ###a
 
 run = Run.get_context()
+
 
 
 def main():
@@ -75,6 +78,10 @@ def main():
 
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
+
+    os.makedirs('outputs',exist_ok=True)
+    joblib.dump(model, filename = 'outputs/model.joblib')
+
 
 if __name__ == '__main__':
     main()
