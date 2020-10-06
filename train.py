@@ -45,7 +45,7 @@ web_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample
 
 
 #ds = ### YOUR CODE HERE ###
-ds = Dataset.Tabular.from_delimited_files(path=web_path)
+ds = TabularDatasetFactory.from_delimited_files(path=web_path)
 
 
 x, y = clean_data(ds)
