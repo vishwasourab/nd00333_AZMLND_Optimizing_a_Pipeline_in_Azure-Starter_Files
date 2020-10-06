@@ -10,7 +10,7 @@ This model is then compared to an Azure AutoML run.
 This dataset contains data about bank telemarketing. The dataset has 21 columns and about 32000 rows. We're trying to predict the column named 'y' which has two class possibilities (yes, no). There is heavy class imbalance in the dataset. There are less than 3200 'yes' records which accounts to around 10% of the total rows.
 
 
-The best performing model was the logistic regression model built manually and then used hyperdrive to tune the parameters. The accuracy of this model was 91.85%
+The best performing model was the VotingEnsemble model built by AutoML. The accuracy of this model was 91.68%
 
 ## Scikit-learn Pipeline
 
@@ -53,17 +53,16 @@ Note: I removed the preprocessing step that was there in the sklearn pipeline to
 
 ## Pipeline comparison
 
-* In SKLearn pipeline, we did not do data quality checks like imbalance in the classes etc., Whereas the AutoML did that and balanced the dataset. 
+* In SKLearn pipeline, we did not do data quality checks like imbalance in the classes etc.,However, In AutoML, there're Data Guardrails that performed these checks and alerted if anything failed. In our dataset, It alerted the class imbalance.
 * In SKLearn pipeline, we only built a single model and tuned the hyperparameters for that model whereas in AutoML, eventhough there's a time constraint it was able to build around 20 models in 30 mins.
-* The difference in accuracy between both the models is very less (0.1%). The AutoML's best model gave an accuracy of 91.7 while the logistic gave 91.8%. The reason for logistic to give higher could be class imbalance. We didn't treat the class imbalance in our dataset in the manual pipeline. So, the model is biased towards the negtive class.
+* The difference in accuracy between both the models is very less (0.32%). The AutoML's best model gave an accuracy of 91.68 while the logistic gave 91.36%. The reason for Ensemble to give higher score could be a factor of taking different classifiers and voting. Also, as we didn't treat the class imbalance in our dataset in the manual pipeline, a simple model like logistic regression tends to be biased towards the negtive class.
 
 ## Future work
 
-As the dataset is not complex and a linear model like Logistic is able to learn the data, we can work on improving this model. In terms os data preprocessing, treating class imbalance would be a major thing to try out and later we can experiment with different imputing techniques instead of mean (like nearest). There's probably some improvements that can be done in hyperparameters also. Giving a wider search space and diffrenet sampling technique like Bayesian Sampling.
+As the dataset is not complex and a linear model like Logistic is able to learn the data and give similar scores to complex ensemble models, we can work on improving this model. In terms os data preprocessing, treating class imbalance would be a major thing to try out and later we can experiment with different imputing techniques instead of mean (like nearest). There's probably some improvements that can be done in hyperparameters also. Giving a wider search space and diffrenet sampling technique like Bayesian Sampling.
 
 As always, we can also use AutoML to comeup with the best model by giving it more time and compute resources. 
 
 ## Proof of cluster clean up
 
-I have used my personal Azure account for this project and deleted the clusters as soon as the project is done. So, by the time I started this writeup, the cluster has been deleted.
-
+I have included the code in the end of the notebook to delete the compute cluster
