@@ -25,8 +25,6 @@ The training pipeline for SKLearn model is as follows:
 * Select the best model from the tuning
 * Save and register the model for the later use 
 
-**What are the benefits of the parameter sampler you chose?**
-
 I have chosen Random Sampling to choose the hyperparameters. This type of sampling is good for initial experiments and we can refine our search space in later experiments. 
 
 Random Sampling
